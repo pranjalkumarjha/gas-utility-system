@@ -1,6 +1,7 @@
-****  
-Customer username:pranjal password: abcd 
-Customer service username:sam password:sung
+****   
+ATTENTION!!!!
+1) Customer username:pranjal , password: abcd 
+2) Customer service username:sam , password:sung
 ****
 TITLE : PRANJAL KUMAR JHA 
 
