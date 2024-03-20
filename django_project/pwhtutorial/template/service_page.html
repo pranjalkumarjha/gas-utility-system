@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Requests</title>
+</head>
+<body> 
+    <p>currently active requests: <br></p>  
+    
+    {% for request in requests %} 
+       {% if request.request_status != 'closed'%}
+        <div>
+            <div>username: {{ request.username }}</div>
+            <div>request_status: {{ request.request_status }}</div>
+            <div>requested_date:{{ request.last_update }}</div>  
+            <div>request type:{{ request.request_type }}</div>  
+            <div>last update:{{ request.last_update }}</div>
+            <br>
+        </div> 
+        {%endif%}
+    {% endfor %} 
+    <div style="padding-bottom:20px;text-align: center;">update user request status</div>
+    <form action="/update_status" METHOD="POST"> 
+        {% csrf_token %}
+        <label for="username">username:</label><br>
+        <input type="text" id="username" name="username" placeholder="username"><br><br> 
+        <label for="updated_status">update status to :</label><br>
+        <input type="text" id="updated_status" name="updated_status" placeholder="not closed"><br><br> 
+        <label for="request_type">request type :</label><br>
+        <input type="text" id="request_type" name="request_type" placeholder="request_type"><br><br>
+        <input type="submit" value="Submit">
+    </body>
+</html>

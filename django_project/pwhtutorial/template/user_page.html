@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>userpage</title>
+</head>
+<body>
+    <div>username:{{username}}</div> 
+    <div style="text-align:center">CURRENTLY ACTIVE REQUESTS</div> 
+    {% for request in requests %} 
+       {% if request.request_status != 'closed' and request.username == username%}
+        <div>
+            <div>username: {{ request.username }}</div>
+            <div>request_status: {{ request.request_status }}</div>
+            <div>requested_date:{{ request.last_update }}</div>  
+            <div>request type:{{ request.request_type }}</div>  
+            <div>last update:{{ request.last_update }}</div>
+            <br>
+        </div> 
+        {%endif%}
+    {% endfor %}   
+    <div style="text-align:center;">PAST CLOSED REQUESTS</div>
+    {% for request in requests %} 
+       {% if request.request_status == 'closed' and request.username == username%}
+        <div>
+            <div>username: {{ request.username }}</div>
+            <div>request_status: {{ request.request_status }}</div>
+            <div>requested_date:{{ request.last_update }}</div>  
+            <div>request type:{{ request.request_type }}</div>  
+            <div>last update:{{ request.last_update }}</div>
+            <br>
+        </div> 
+        {%endif%}
+    {% endfor %} 
+    <div style="text-align: center;">OPEN NEW ISSUE
+       <form action="/open_issue" METHOD="POST"> 
+          {% csrf_token %}
+         <label for="username">username:</label><br>
+         <input type="text" id="username" name="username" placeholder="username"><br><br> 
+         <label for="password">password:</label><br>
+         <input type="text" id="password" name="password" placeholder="password"><br><br> 
+         <label for="request_type">request type:</label><br>
+         <input type="text" id="request_type" name="request_type" placeholder="request_type"><br><br>
+         <input type="submit" value="Submit"> 
+    </div> 
+</body>
+</html>
